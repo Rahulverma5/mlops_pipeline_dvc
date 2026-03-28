@@ -135,8 +135,24 @@ def main():
         logger.error('Failed to complete the model evaluation process: %s', e)
         print(f"Error: {e}")
 
-  
-  
+
+def get_metrics() -> dict:
+    """Load the evaluation metrics from a JSON file."""
+    try:
+        with open('reports/metrics.json', 'r') as file:
+            metrics = json.load(file)
+        logger.debug('Metrics loaded from reports/metrics.json')
+        return metrics
+    except FileNotFoundError:
+        logger.error('File not found: reports/metrics.json')
+        raise
+    except json.JSONDecodeError as e:
+        logger.error('Failed to decode JSON: %s', e)
+        raise
+    except Exception as e:
+        logger.error('Unexpected error occurred while loading the metrics: %s', e)
+        raise
+
 if __name__ == '__main__':
     logger.info('Starting model evaluation process..')
     main()
