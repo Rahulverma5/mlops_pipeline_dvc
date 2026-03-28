@@ -135,10 +135,8 @@ def main():
         logger.error('Failed to complete the model evaluation process: %s', e)
         print(f"Error: {e}")
 
-# def check_branch():
-#     print("this is branch one")
-
-    
+  
+  
 if __name__ == '__main__':
-    print("this is main branch")
+    logger.info('Starting model evaluation process..')
     main()
